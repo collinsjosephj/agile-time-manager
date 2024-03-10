@@ -18,7 +18,7 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="Develop/style.css" />
     <title>Work Day Scheduler</title>
   </head>
 
@@ -27,6 +27,9 @@
       <h1 class="display-3">Work Day Scheduler</h1>
       <p class="lead">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
+        <!-- Added HTML that will later show date and time-->
+        <p>Current Date & Time:</p>
+          <p>Date: <span id="date"></span> | Time: <span id ="time"></span></p>
     </header>
     <div class="container-lg px-5">
       <!-- Use class for "past", "present", and "future" to apply styles to the
@@ -35,7 +38,7 @@
         id to the current hour. The html provided below is meant to be an example
         demonstrating how the css provided can be leveraged to create the
         desired layout and colors. The html below should be removed or updated
-        in the finished product. Remember to delete this comment once the
+        in the finished product. Remember to delete this comment once the   
         code is implemented.
         -->
 
@@ -73,6 +76,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src="script.js"></script>
+    <script src="Develop/script.js"></script>
   </body>
 </html>
