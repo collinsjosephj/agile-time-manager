@@ -27,6 +27,27 @@ dayjs.locale(localeSet);
 $(function () {
 // Function will get the current hour of the day -- referenced from the dayjs library String + Format
 const thisHour = dayjs().format('H');
-// 'H' denotes a 24 hour clock to be called from the dayjs library 
-});
+// 'H' denotes a 24 hour clock to be called from the dayjs library
+// Function below toggles the ".time-block" based on the "past", "present", and "future" class relative to my thisHour variable. 
+function changeColor() {
+  $('.time-block').each(function() {
+    const timeBlockHour = parseInt(this.id);
+    $(this).toggleClass('past', timeBlockHour < thisHour );
+    $(this).toggleClass('present', timeBlockHour === thisHour );
+    $(this).toggleClass('future', timeBlockHour > thisHour );
+  });
+}
+// eventLister included in bottom function to save user input to localStorage
+function saveToLocal() {
+
+
+}
+
+
+
+
+
+
+
+}); // this one is for the overarching func :)
 
