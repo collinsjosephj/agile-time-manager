@@ -19,7 +19,7 @@
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-  //const hours = ['9', '10', '11', '12', '13', '14', '15', '16', '17'] lll
+  //const hours = ['9', '10', '11', '12', '13', '14', '15', '16', '17'] 
 
 const localeSet = {};
 dayjs.locale(localeSet);
@@ -29,8 +29,8 @@ $(function () {
 const thisHour = dayjs().format('H');
 // 'H' denotes a 24 hour clock to be called from the dayjs library
 // Function below toggles the ".time-block" based on the "past", "present", and "future" class relative to my thisHour variable. 
-function changeColor() {
-  $('.time-block').each(function() {
+function hourColor() {
+  $('.time-block').forEach(function() {
     const timeBlockHour = parseInt(this.id);
     $(this).toggleClass('past', timeBlockHour < thisHour );
     $(this).toggleClass('present', timeBlockHour === thisHour );
@@ -39,7 +39,16 @@ function changeColor() {
 }
 // eventLister included in bottom function to save user input to localStorage
 function saveToLocal() {
-
+  $('.saveBtn').on('click', function() {
+    const keyInput = $(this).parent().attr('id');
+    const valueInput = $(this).siblings('.description').val();
+    localStorage.setItem(keyInput, valueInput);
+  });
+}
+// Function below will refresh each ".time-block" relative to the thisHour variable whether it is "past"= gray, "present"=red, or the "future"=green. 
+// Function will also be built to  pull user input from localStorage and set the textarea values for each corresponding ".time-block"
+function changeColor() {
+  $('.time-block').forEach
 
 }
 
@@ -48,6 +57,7 @@ function saveToLocal() {
 
 
 
-
+hourColor();
+saveToLocal();
 }); // this one is for the overarching func :)
 
