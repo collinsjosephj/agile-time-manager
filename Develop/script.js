@@ -47,7 +47,6 @@ $(function() {
     });
   }
   // Function below will refresh each ".time-block" relative to the thisHour variable whether it is past= gray, present=red, or the future=green. 
-  // Function will also be built to pull user input from localStorage and set the textarea values for each corresponding ".time-block"
   
   function changeColor() {
     $('.time-block').each(function() {
@@ -59,26 +58,29 @@ $(function() {
       } else ( timeBlockHour > thisHour )
         $(this).removeClass('past', 'present').addClass('future');
     });
-    $('time.block').each(function() {
+  // Function will also be built to pull user input from localStorage and set the textarea values for each corresponding ".time-block"
+    $('.time-block').each(function() {
       const keyInput = $(this).attr('id');
       const valueInput = localStorage.getItem(keyInput);
-      $(this).siblings('.description').val();
+      console.log(keyInput);
+      console.log(valueInput);
+      $(this).children('.description').val(valueInput || ''); // This will set the textarea value to an empty string if no value is found in localStorage for a time-block
     });
   }
 
   // Function below will display the time at the top of the application. 
   function updateTime() {
-    const dateEl = $('#date');
-    const timeEl = $('#time');
-    const dateNow = dayjs().format('MMM D, YYYY');
+    const dateElement = $('#date');
+    const timeElement = $('#time');
+    const dateNow = dayjs().format('MMM D, YYYY A');
     const timeNow = dayjs().format('hh:mm:ss');
     dateElement.text(dateNow);
     timeElement.text(timeNow);
   }
-  
+
   hourColor();
   saveToLocal();
   changeColor();
-  updateTime(timeNow, 1000); // this one is for the overarching func
-});
+  setInterval(updateTime, 1000); 
+}); // this one is for the overarching func
 
