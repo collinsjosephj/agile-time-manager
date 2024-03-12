@@ -23,20 +23,22 @@
 //const dayjs = require("dayjs");
 
 
-const localeSet = {}; // redundant, maybe comment this out!!!!!!!!
-dayjs.locale(localeSet);
+//const localeSet = {}; // redundant, maybe comment this out!!!!!!!!
+//dayjs.locale(localeSet);
 // Will wait until the DOM is fully loaded before executing the function
-$(function() {
+document.addEventListener('DOMContentLoaded', function() {
   // Function will get the current hour of the day -- referenced from the dayjs library String + Format
   // 'H' denotes a 24 hour clock to be called from the dayjs library 
   const thisHour = dayjs().format('H'); 
+  
+    //const thisHour = "10";
   // Function below toggles the ".time-block" based on the "past", "present", and "future" class relative to my thisHour variable.
   // .addClass & .removeClass didnt make conceptual sense to me here, so I found .toggleClass on https://htmlcheatsheet.com/jquery/
-  function hourColor() {
+  function toggleHourClass() {
     $('.time-block').each(function() {
       const hourBlock = parseInt(this.id);
       $(this).toggleClass('past', hourBlock < thisHour );
-      $(this).toggleClass('present', hourBlock === thisHour );
+      $(this).toggleClass('present', hourBlock == thisHour );
       $(this).toggleClass('future', hourBlock > thisHour );
     });
   }
@@ -53,22 +55,23 @@ $(function() {
   function changeColor() {
     $('.time-block').each(function() {
       const hourBlock = parseInt(this.id);
-      if ( hourBlock == thisHour ) {
-        $(this).removeClass('past', 'future').addClass('present');
-      } else if ( hourBlock < thisHour ) {
-        $(this).removeClass('present', 'future').addClass('past');
-      } else ( hourBlock > thisHour )
-        $(this).removeClass('past', 'present').addClass('future');
+      if (hourBlock == thisHour) {
+        $(this).removeClass('past future').addClass('present');
+      } else if (hourBlock < thisHour) {
+        $(this).removeClass('present future').addClass('past');
+      } else if (hourBlock > thisHour) {
+        $(this).removeClass('past present').addClass('future');
+      }
     });
+  }
   // Function will also be built to pull user input from localStorage and set the textarea values for each corresponding ".time-block"
     $('.time-block').each(function() {
       const keyInput = $(this).attr('id');
       const valueInput = localStorage.getItem(keyInput);
-      console.log(keyInput);
-      console.log(valueInput);
+      //console.log(keyInput);
+      //console.log(valueInput);
       $(this).children('.description').val(valueInput || ''); // This will set the textarea value to an empty string if no value is found in localStorage for a time-block
     });
-  }
 
   // Function below will display the time at the top of the application. 
   function updateTime() {
@@ -79,19 +82,11 @@ $(function() {
     dateElement.text(dateNow);
     timeElement.text(timeNow);
   }
-  /*$(document).ready(function() {
-    const container = $('.container-lg');
-    const hours = ['09', '10', '11', '12', '13', '14', '15', '16', '17']; //24 hour time clock
 
-    hours.forEach(hour => {
-      const hourId = 
-
-    });*/
-  
-  hourColor();
+  toggleHourClass();
   saveToLocal();
   changeColor();
-  newRow();
+  updateTime();
   setInterval(updateTime, 1000); 
-}); // this one is for the overarching func
+});// this one is for the overarching func
 
