@@ -13,4 +13,4 @@ A creative, ever-so-useful edition of a calendar app that will allow a user to s
 --    I utilized the documents provided from us by our instructors, as well as those found on W3, MDN, OverStack, and office hours. I am rather proud of this application, and I hope you like it! 
 
 ### Link
-This application can be found on GitHub pages at []
+This application can be found on GitHub pages at [https://collinsjosephj.github.io/agile-time-manager/]
